@@ -1,0 +1,123 @@
+{% extends 'main_nav.html' %}
+{% block content %}
+
+  
+  <div id="page-home" class="page_active">
+    {% comment %} navbar {% endcomment %}
+    <nav class="pub-nav">
+      <div class="pub-logo">
+
+      {% comment %} <div class="pi">
+          🏘️
+      </div> {% endcomment %}
+      <span class="pt">
+
+        Rent Flow
+
+      </span>
+      </div>
+    
+    <div class="pub-links">
+    <a href="home">Home</a>
+    <a href="/">Features</a>
+    <a href="/">Pricing</a>
+    <a href="{% url "login" %}" class="cta">Sign in</a>
+    </div>
+    
+    </nav>
+    {% comment %} hero section {% endcomment %}
+
+  <section class="hero">
+    
+    <div class="hero-badge">
+      <div class="dot"></div>
+      "Built for Landlords & Property Owners"
+    </div>
+  
+    <h1>
+     Manage Rent 
+     <br>
+     <em>Effortlessly</em>
+    </h1>
+    
+    
+    <p>
+
+      Track tenants, payments, and dues from a single clean dashboard . No spreadsheets, no headaches.
+
+    </p>
+
+  <div class="hero-ctas">
+
+    <a href="/" class="btn-primary">
+        🚀 Get Started Free
+    </a> 
+    
+   
+
+    <a href="{% url 'login' %}" class="btn-sec">
+        Login to Dashboard
+    </a>
+
+</div>
+
+
+
+    {% comment %} browser preview {% endcomment %}
+
+    <div class="hero-preview">
+      <div class="hp-bar">
+           <div class="hp-dot r"></div>
+           <div class="hp-dot y"></div>
+           <div class="hp-dot g"></div>
+
+      </div>
+      <div class="hp-inner">
+        <div class="hp-sidebar">
+          <div class="hp-sb-logo"><div class="hli">🏘️</div>RentLite</div>
+          <div class="hp-ni act">📊 Dashboard</div>
+          <div class="hp-ni">👥 Tenants</div>
+          <div class="hp-ni">💳 Payments</div>
+          <div class="hp-ni">📈 Reports</div>
+        </div>
+        <div class="hp-main">
+          <div class="hp-stats">
+            <div class="hp-stat"><div class="lbl">Tenants</div><div class="val b">24</div></div>
+            <div class="hp-stat"><div class="lbl">Paid</div><div class="val g">18</div></div>
+            <div class="hp-stat"><div class="lbl">Pending</div><div class="val a">6</div></div>
+            <div class="hp-stat"><div class="lbl">Collected</div><div class="val">₹1.82L</div></div>
+          </div>
+          <div class="hp-rows">
+            <div class="hp-row"><span class="rn">Amit Sharma · Flat 3B · Apr 2025</span><span class="rb paid">✓ Paid</span></div>
+            <div class="hp-row"><span class="rn">Priya Nair · Flat 1A · Apr 2025</span><span class="rb paid">✓ Paid</span></div>
+            <div class="hp-row"><span class="rn">Rohit Verma · Flat 2C · Mar 2025</span><span class="rb over">⚠ Overdue</span></div>
+            <div class="hp-row"><span class="rn">Karan Patel · Shop 1 · Apr 2025</span><span class="rb pend">⏳ Pending</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="features">
+    <div class="sec-label">Features</div>
+    <h2 class="sec-title">Everything you need to<br><em>run your property</em></h2>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="feat-icon">👥</div><h3>Tenant Management</h3><p>Add, edit, and track all tenants in one place. Store contacts, lease dates, and rent details.</p></div>
+      <div class="feat-card"><div class="feat-icon">💳</div><h3>Payment Tracking</h3><p>Record and monitor payments month by month. See exactly who has paid and who hasn't.</p></div>
+      <div class="feat-card"><div class="feat-icon">🔔</div><h3>Due Rent Alerts</h3><p>Instantly see pending dues and overdue tenants. Never lose track of arrears again.</p></div>
+      <div class="feat-card"><div class="feat-icon">📊</div><h3>Reports &amp; Summary</h3><p>Clear monthly overviews of collected rent, pending dues, and full payment history.</p></div>
+    </div>
+  </section>
+
+
+   <footer>
+    <div class="fl"><div class="fi">🏘️</div><span>RentLite</span></div>
+    <p>© 2026 Rent Flow by Maheboob Mulla. All rights reserved.</p>
+    <div class="flinks"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Support</a></div>
+  </footer>
+
+
+</div> 
+{% endblock%}

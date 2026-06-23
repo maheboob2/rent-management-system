@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <link rel="stylesheet" href="{% static 'css/tenantedit.css' %}"> 
+</head>
+<body>
+   {% comment %} <form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">save</button>
+   </form> {% endcomment %}
+
+<div id="page-dashboard" class="page active">
+  <div class="app-shell">
+ 
+    <div class="main-area">
+ 
+      <!-- Back button -->
+      <a href="{% url 'tenant_list' %}" class="back-btn">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+        </svg>
+        Back to Tenants
+      </a>
+ 
+      <!-- Page header -->
+      <div class="page-header">
+        <h2>Edit Tenant</h2>
+        <p>Update the tenant's details below.</p>
+      </div>
+ 
+      <!-- Form card -->
+      <div class="tenant-form-card">
+ 
+        <!-- Card header — blue for edit context -->
+        <div class="form-card-header">
+          <div class="icon-wrap">
+            <!-- pencil / edit icon -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 000-1.41l-2.34-2.34a1 1 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+            </svg>
+          </div>
+          <div class="header-text">
+            <h3>Edit Tenant Details</h3>
+            <p>Fields marked with * are required</p>
+          </div>
+        </div>
+ 
+        <!-- Form -->
+        <form method="post" novalidate>
+          {% csrf_token %}
+ 
+          <div class="form-card-body">
+ 
+            <!-- Edit notice -->
+            <div class="edit-notice">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 110 20A10 10 0 0112 2z"/>
+              </svg>
+              You are editing an existing tenant record. Changes will be saved immediately on submit.
+            </div>
+ 
+            <div class="tenant-form">
+              {{ form.as_p }}
+            </div>
+ 
+          </div>
+ 
+          <div class="form-card-footer">
+            <span class="required-note">* Required fields must be filled</span>
+            <div class="action-btns">
+              <a href="{% url 'tenant_list' %}" class="btn-cancel">Cancel</a>
+              <button type="submit" class="btn-save">
+                <!-- save/floppy icon -->
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M17 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7l-4-4zm-5 16a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm3-10H5V5h10v4z"/>
+                </svg>
+                Save Changes
+              </button>
+            </div>
+          </div>
+ 
+        </form>
+ 
+      </div><!-- /tenant-form-card -->
+ 
+    </div><!-- /main-area -->
+  </div><!-- /app-shell -->
+</div><!-- /p
+
+
+</body>
+</html>

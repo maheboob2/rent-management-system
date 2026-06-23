@@ -1,0 +1,49 @@
+
+    {% extends "main_nav.html" %}
+    {% block content %}
+    
+
+<div id="page-login" class="page active">
+  <div class="login-outer">
+    <div class="login-left">
+      <div class="ll-inner">
+        <div class="ll-logo"><div class="lli">🏘️</div><div class="llt">RentLite</div></div>
+        <h2>Welcome back,<br>Landlord.</h2>
+        <p>Your properties, tenants, and payments — all in one secure, clean dashboard.</p>
+        <div class="ll-feats">
+          <div class="ll-feat"><div class="chk">✓</div>Real-time payment tracking</div>
+          <div class="ll-feat"><div class="chk">✓</div>Automated due rent alerts</div>
+          <div class="ll-feat"><div class="chk">✓</div>Monthly reports &amp; summaries</div>
+          <div class="ll-feat"><div class="chk">✓</div>Manage unlimited tenants</div>
+        </div>
+      </div>
+    </div>
+    <div class="login-right">
+      <div class="login-card">
+        <h3>Sign in</h3>
+        <p class="sub">Enter your credentials to access your dashboard</p>
+        <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label> Enter Username</label>
+          <div class="inp-wrap"><span class="ii">✉️</span><input type="text" class="form-control" name="username" placeholder="username"></div>
+        </div>
+        <div class="form-group">
+          <label>Enter password</label>
+          <div class="inp-wrap"><span class="ii">🔒</span><input type="text" class="form-control" name="password" placeholder="••••••••"></div>
+        </div>
+        <div class="login-extras">
+          <div class="chk-row"><input type="checkbox" id="rem"><label for="rem">Remember me</label></div>
+          <a href="#" class="forgot">Forgot password?</a>
+        </div>
+        <button class="btn-login" type="submit">Sign in to Dashboard →</button>
+        <div class="divider">or</div>
+        <p class="login-foot">No account? <a href="#">Create one free</a></p>
+      </div>
+       </form>
+    </div>
+   
+  </div>
+</div>
+
+{% endblock  %}

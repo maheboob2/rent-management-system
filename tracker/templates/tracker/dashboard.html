@@ -1,0 +1,337 @@
+{% extends 'main_nav.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/dash.css' %}"> 
+ 
+
+  {% comment %} <form method="GET">
+    <input type="text" name="search" value="{{ request.GET.search }}" placeholder="Enter name" />
+    <button type="submit">search</button>
+  </form>
+
+  <h1>Welcome Back {{ request.user.username }}</h1>
+  <h3>Total Tenants:{{ count }}</h3>
+  <h3>Total active Tenants:{{ is_active }}</h3>
+  <p>Total collected:{{ amount }}</p>
+  <p>Unpaid Payments:{{ unpaid }}</p>
+
+  <table border="1px">
+    <tr>
+      <th colspan="5">
+        Recents Payments <br /> <p>Last 6 transactions</p>
+      </th>
+    </tr>
+
+    <tr>
+      <th>Tenant</th>
+      <th>Month</th>
+      <th>amount</th>
+      <th>status</th>
+      <th>date</th>
+    </tr>
+    {% for payment in last_payment %}
+      <tr>
+        <td>{{ payment.tenant.name }}</td>
+        <td>{{ payment.month }}</td>
+        <td>{{ payment.amount }}</td>
+        <td>{{ payment.status }}</td>
+        <td>{{ payment.paid_date }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  <table border="2">
+    <tr>
+      <th colspan="2">
+        Pending Dues <br />
+        {{ pending_due|length }} tenants need follow-up
+      </th>
+    </tr>
+    {% for pending in pending_due %}
+      <tr>
+        <td>{{ pending.name }}</td>
+        <td>{{ pending.due }}</td>
+      </tr>
+    {% endfor %}
+  </table> {% endcomment %}
+<div id="page-dashboard" class="page active"> 
+   <div class="app-shell">
+   {% include 'tracker/side_nav.html' %}
+
+  <div class="main-area">
+    <div class="topbar">
+      <div class="topbar-title">Dashboard</div>
+      <div class="tb-search">
+        <span class="tsi">🔍</span>
+        <form method="GET">
+          <input type="text" name="search" value="{{ request.GET.search }}" placeholder="Search tenants....." />
+          {% comment %} <button type="submit">search</button> {% endcomment %}
+        </form>
+      </div>
+      <div class="tb-actions">
+        <button class="tb-icon-btn">🔔<span class="notif-dot"></span></button>
+        <button class="tb-icon-btn">⚙️</button>
+        <div class="tb-user-pill">
+          <span class="tb-uname">{{ request.user.username }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="welcome-banner">
+        <div class="wb-grid"></div>
+        <div class="wb-text">
+          <div class="hello">Hello, {{ request.user.username }} 👋</div>
+          <div class="sub">Here's what's happening with your properties today.</div>
+          <div class="date-badge">📅 April 2025 &nbsp;·&nbsp; {{ is_active }} Active Units</div>
+        </div>
+        {% comment %} <div class="wb-right">
+          <div class="wb-mini">
+            <div class="wml">Properties</div>
+            <div class="wmv">3</div>
+          </div>
+          <div class="wb-mini">
+            <div class="wml">Units</div>
+            <div class="wmv">24</div>
+          </div>
+          <div class="wb-mini">
+            <div class="wml">Occupancy</div>
+            <div class="wmv">92%</div>
+          </div>
+        </div> {% endcomment %}
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card" style="animation:fadeUp .4s .05s var(--ease) both">
+          <div class="accent-bar ac-blue"></div>
+          <div class="stat-hdr">
+            <div class="stat-lbl">Total Tenants</div>
+            <div class="stat-iw si-blue">👥</div>
+          </div>
+          <div class="stat-val">{{ count }}</div>
+          <div class="stat-chg sc-up">↑ 2 new this month</div>
+          <div class="stat-bar">
+            <div class="stat-bar-fill ac-blue" data-w="80%" style="width: 80%;"></div>
+          </div>
+        </div>
+        <div class="stat-card" style="animation:fadeUp .4s .1s var(--ease) both">
+          <div class="accent-bar ac-green"></div>
+          <div class="stat-hdr">
+            <div class="stat-lbl">Total active Tenants</div>
+            <div class="stat-iw si-green">✅</div>
+          </div>
+          <div class="stat-val">{{ is_active }}</div>
+          <div class="stat-chg sc-up">↑ 75% collection rate</div>
+          <div class="stat-bar">
+            <div class="stat-bar-fill ac-green" data-w="75%" style="width: 75%;"></div>
+          </div>
+        </div>
+        <div class="stat-card" style="animation:fadeUp .4s .15s var(--ease) both">
+          <div class="accent-bar ac-amber"></div>
+          <div class="stat-hdr">
+            <div class="stat-lbl">Pending Payments</div>
+            <div class="stat-iw si-amber">⏳</div>
+          </div>
+          <div class="stat-val">{{ unpaid }}</div>
+          <div class="stat-chg sc-neu">3 overdue · 3 pending</div>
+          <div class="stat-bar">
+            <div class="stat-bar-fill ac-amber" data-w="25%" style="width: 25%;"></div>
+          </div>
+        </div>
+        <div class="stat-card" style="animation:fadeUp .4s .2s var(--ease) both">
+          <div class="accent-bar ac-red"></div>
+          <div class="stat-hdr">
+            <div class="stat-lbl">Total Collected</div>
+            <div class="stat-iw si-red">💰</div>
+          </div>
+          <div class="stat-val">{{ amount }}</div>
+          <div class="stat-chg sc-up">↑ vs ₹1.6L last month</div>
+          <div class="stat-bar">
+            <div class="stat-bar-fill ac-red" data-w="68%" style="width: 68%;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="content-grid">
+        <div class="card" style="animation:fadeUp .4s .25s var(--ease) both">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Recent Payments</div>
+              <div class="card-sub">Last 6 transactions</div>
+            </div>
+            <button class="card-action">View all →</button>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Tenant</th>
+                <th>Month</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th class="tr">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for payment in last_payment %}
+                <tr>
+                  <td>
+                    <div class="td-name">
+                      <div class="n">{{ payment.tenant.name }}</div>
+                    </div>
+                  </td>
+                  <td>{{ payment.month }}</td>
+                  <td class="fw6">{{ payment.amount }}</td>
+                  <td>
+                    <span class="badge paid">{{ payment.status }}</span>
+                  </td>
+                  <td class="tr">{{ payment.paid_date }}</td>
+                </tr>
+              {% endfor %}
+
+              {% comment %} <tr>
+                <td>
+                  <div class="td-name">
+                    <div class="td-av av-b">PN</div>
+                    <div class="td-av-t">
+                      <div class="n">Priya Nair</div>
+                      <div class="s">Flat 1A</div>
+                    </div>
+                  </div>
+                </td>
+                <td>April 2025</td>
+                <td class="fw6">₹9,500</td>
+                <td>
+                  <span class="badge paid">✓ Paid</span>
+                </td>
+                <td class="tr">Apr 2</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="td-name">
+                    <div class="td-av av-c">RV</div>
+                    <div class="td-av-t">
+                      <div class="n">Rohit Verma</div>
+                      <div class="s">Flat 2C</div>
+                    </div>
+                  </div>
+                </td>
+                <td>Mar 2025</td>
+                <td class="fw6">₹11,000</td>
+                <td>
+                  <span class="badge overdue">⚠ Overdue</span>
+                </td>
+                <td class="tr">—</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="td-name">
+                    <div class="td-av av-b">SD</div>
+                    <div class="td-av-t">
+                      <div class="n">Sunita Das</div>
+                      <div class="s">Flat 4D</div>
+                    </div>
+                  </div>
+                </td>
+                <td>April 2025</td>
+                <td class="fw6">₹8,000</td>
+                <td>
+                  <span class="badge paid">✓ Paid</span>
+                </td>
+                <td class="tr">Apr 5</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="td-name">
+                    <div class="td-av av-e">KP</div>
+                    <div class="td-av-t">
+                      <div class="n">Karan Patel</div>
+                      <div class="s">Shop 1</div>
+                    </div>
+                  </div>
+                </td>
+                <td>April 2025</td>
+                <td class="fw6">₹15,000</td>
+                <td>
+                  <span class="badge pending">⏳ Pending</span>
+                </td>
+                <td class="tr">—</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="td-name">
+                    <div class="td-av av-d">MJ</div>
+                    <div class="td-av-t">
+                      <div class="n">Meena Joshi</div>
+                      <div class="s">Flat 5E</div>
+                    </div>
+                  </div>
+                </td>
+                <td>April 2025</td>
+                <td class="fw6">₹9,500</td>
+                <td>
+                  <span class="badge paid">✓ Paid</span>
+                </td>
+                <td class="tr">Apr 6</td>
+              </tr> {% endcomment %}
+            </tbody>
+          </table>
+        </div>
+        <div class="card" style="animation:fadeUp .4s .3s var(--ease) both">
+          <div class="card-header">
+            <div>
+              <div class="card-title">🔔 Pending Dues</div>
+            </div>
+            <button class="card-action">Remind All</button>
+          </div>
+          <div class="pending-list">
+              {% for pending in pending_due %}
+            <div class="pending-item">
+              <div class="pend-info">
+                <div class="pend-name">{{ pending.name }}</div>
+              </div>
+              <div class="pend-amount">{{ pending.due }}</div>
+            </div>
+            {% endfor %}
+
+            {% comment %} <div class="pending-item">
+              <div class="pend-av" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed)">KP</div>
+              <div class="pend-info">
+                <div class="pend-name">Karan Patel</div>
+                <div class="pend-month">April 2025 · Shop 1</div>
+              </div>
+              <div class="pend-amount">₹15,000</div>
+            </div>
+            <div class="pending-item">
+              <div class="pend-av" style="background:linear-gradient(135deg,#f59e0b,#d97706)">MJ</div>
+              <div class="pend-info">
+                <div class="pend-name">Meena Joshi</div>
+                <div class="pend-month">April 2025 · Flat 5E</div>
+              </div>
+              <div class="pend-amount">₹9,500</div>
+            </div>
+            <div class="pending-item">
+              <div class="pend-av" style="background:linear-gradient(135deg,#06b6d4,#0891b2)">VK</div>
+              <div class="pend-info">
+                <div class="pend-name">Vijay Kumar</div>
+                <div class="pend-month">April 2025 · Flat 2A</div>
+              </div>
+              <div class="pend-amount">₹10,500</div>
+            </div>
+            <div class="pending-item">
+              <div class="pend-av" style="background:linear-gradient(135deg,#ec4899,#db2777)">NP</div>
+              <div class="pend-info">
+                <div class="pend-name">Nisha Pawar</div>
+                <div class="pend-month">April 2025 · Flat 7G</div>
+              </div>
+              <div class="pend-amount">₹8,500</div>
+            </div> {% endcomment %}
+          </div>
+          {% comment %} <div style="padding:14px 22px;border-top:1px solid var(--gray-100);display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:13px;color:var(--gray-500);font-weight:500;">Total Outstanding</span>
+            <span style="font-size:18px;font-weight:700;color:var(--red-500);">₹65,500</span>
+          </div> {% endcomment %}
+        </div>
+      </div>
+    </div>
+   </div>
+  </div>
+</div> 
+{% endblock %}

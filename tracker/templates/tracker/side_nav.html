@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+ <link rel="stylesheet" href="{% static 'css/side_nav.css' %}"> 
+</head>
+<body>
+  
+
+{% comment %}     
+    <h1>Rentflow</h1>
+     
+    <div>
+      <a href="{% url "dashboard" %}">Dashboard</a>  
+      <a href="{% url "tenant_list" %}">Tenants</a>
+      <a href="{% url "payment_list" %}">Payments</a>
+      <a href="/">Reports</a>
+    </div>
+
+    <div>
+    <a href="/">Settings</a>
+    <a href="/">Help & support</a>
+    </div>
+
+    <h4>{{ request.user.username }} <br>
+         <p>property owner</p></h4>
+ <a href="{% url "logout" %}">Logout</a>
+
+     <hr>     {% endcomment %}
+    
+    
+     <aside class="sidebar">
+      <div class="sb-brand">
+        <div class="sb-brand-inner">
+          <div class="sb-logo-box">🏘️</div>
+          <div class="sb-logo-text">
+            <div class="sb-name">Rent Flow</div>
+            <div class="sb-tag">Property Manager</div>
+          </div>
+        </div>
+      </div>
+      <div class="sb-section"><div class="sb-section-label">Main</div></div>
+      <a class="sb-item active" href="{% url "dashboard" %}"><span class="si">📊</span> Dashboard <span class="sb-dot"></span></a>
+      <a class="sb-item" href="{% url "tenant_list" %}"><span class="si">👥</span> Tenants</a>
+      <a class="sb-item" href="{% url "payment_list" %}"><span class="si">💳</span> Payments <span class="sb-badge">3</span></a>
+      <button class="sb-item"><span class="si">📈</span> Reports</button>
+      
+      <div class="sb-section" style="margin-top:8px;"><div class="sb-section-label">Settings</div></div>
+      <button class="sb-item"><span class="si">⚙️</span> Settings</button>
+      <button class="sb-item"><span class="si">❓</span> Help &amp; Support</button>
+      <div class="sb-spacer"></div>
+      <div class="sb-bottom">
+        <div class="sb-user">
+          
+          <div class="sb-user-info"><div class="sb-u-name">{{ request.user.username }}</div><div class="sb-u-role">Property Owner</div></div>
+          <span class="sb-chevron">⌃</span>
+        </div>
+        <button class="sb-logout"><span>🚪</span> <a href="{% url "logout" %}">Logout</a></button>
+      </div>
+    </aside>
+    
+</body>
+</html>

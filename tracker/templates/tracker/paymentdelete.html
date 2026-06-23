@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Delete Payment</h1>
+    <p>Are you sure to delete {{payment.tenant.name}}</p>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <button type="submit">confirm delete</button>
+    </form>
+</body>
+</html>

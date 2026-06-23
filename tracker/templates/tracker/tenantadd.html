@@ -1,0 +1,96 @@
+{% extends "main_nav.html" %}
+{% load static %}
+{% block content %}
+
+ <link rel="stylesheet" href="{% static 'css/add_tenant.css' %}">
+{% comment %} <div id="page-dashboard" class="page active"> 
+    <div class="app-shell">
+{% include "tracker/side_nav.html" %}
+<div class="main-area">
+<h2>New Tenant Registration</h2>
+<p>Fill in the details to register a new tenant</p>
+    <form method="post">
+
+    {% csrf_token %}
+
+    <h1>Tenant Registration Form</h1>
+
+    {{form.as_p}}
+
+     <a href="{% url 'tenant_list' %}">
+        <button type="button">Cancel</button>
+    </a>
+
+    <button type="submit">save</button>
+    <div>
+
+    </div>
+
+</div>
+</div>    
+     {% endcomment %}
+
+
+     <div id="page-dashboard" class="page active">
+  <div class="app-shell">
+ 
+    {% include "tracker/side_nav.html" %}
+ 
+    <div class="main-area">
+ 
+      <!-- Page header -->
+      <div class="page-header">
+        <h2>Add New Tenant</h2>
+        <p>Fill in the details below to register a new tenant.</p>
+      </div>
+ 
+      <!-- Form card -->
+      <div class="tenant-form-card">
+ 
+        <!-- Card header -->
+        <div class="form-card-header">
+          <div class="icon-wrap">
+            <!-- person icon -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+            </svg>
+          </div>
+          <div class="header-text">
+            <h3>Tenant Registration Form</h3>
+            <p>Fields marked with * are required</p>
+          </div>
+        </div>
+ 
+        <!-- Form -->
+        <form method="post" novalidate>
+          {% csrf_token %}
+ 
+          <div class="form-card-body">
+            <div class="tenant-form">
+              {{ form.as_p }}
+            </div>
+          </div>
+ 
+          <div class="form-card-footer">
+            <span class="required-note">* Required fields must be filled</span>
+            <div class="action-btns">
+              <a href="{% url 'tenant_list' %}" class="btn-cancel">Cancel</a>
+              <button type="submit" class="btn-save">
+                <!-- floppy/save icon -->
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M17 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7l-4-4zm-5 16a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm3-10H5V5h10v4z"/>
+                </svg>
+                Save Tenant
+              </button>
+            </div>
+          </div>
+        </form>
+ 
+      </div><!-- /tenant-form-card -->
+ 
+    </div><!-- /main-area -->
+  </div><!-- /app-shell -->
+</div><!-- /page-dashboard -->
+ 
+
+{% endblock  %}
